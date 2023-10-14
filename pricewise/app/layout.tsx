@@ -30,3 +30,9 @@ export default function RootLayout({
     </html>
   )
 }
+
+
+/*
+
+Allows sharing differnt parts of application across different pages
+*/
