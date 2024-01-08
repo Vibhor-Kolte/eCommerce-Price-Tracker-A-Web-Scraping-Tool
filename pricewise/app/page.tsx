@@ -26,9 +26,21 @@ const Home = () => {
             Powerful, system to track your products of any eCommerce Site and make smarter decisions while buying.
           </p>
 
+          Search Bar
         </div>
+        HeroCarousel for horizantal and vertical viewing, depending on the device.
       </div>
     </section>
+
+    <section className="trending-section">
+        <h2 className="section-text">Trending</h2>
+
+        <div className="flex flex-wrap gap-x-8 gap-y-16"> {/** wrap images on smaller devices */}
+          {["Apple Iphone 13", "Think and Grow Rich Book", "HRX Sneakers"].map((product) => (
+            <div>{product}</div>
+          ))}
+        </div>
+      </section>
     </>
   )
 }
