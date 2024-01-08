@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from "next/image"
+import Searchbar from '@/components/Searchbar'
 
 const Home = () => {
   return (
@@ -26,7 +27,7 @@ const Home = () => {
             Powerful, system to track your products of any eCommerce Site and make smarter decisions while buying.
           </p>
 
-          Search Bar
+          <Searchbar/>
         </div>
         HeroCarousel for horizantal and vertical viewing, depending on the device.
       </div>
