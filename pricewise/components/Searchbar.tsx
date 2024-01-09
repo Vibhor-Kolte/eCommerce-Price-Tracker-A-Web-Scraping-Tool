@@ -23,14 +23,26 @@ const isValidAmazonProductURL = (url: string) => {
 const Searchbar = () => {
     // need to keep track of url that we submit
     const [searchPrompt, setSearchPrompt] = useState('');
+    // turn on loading when clicked
+    const [isLoading, setIsLoading] = useState(false);
     
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
     
         const isValidLink = isValidAmazonProductURL(searchPrompt);
     
-        alert(isValidLink ? 'Valid Link':'Please provide a valid Amazon link');
         // try:{https://amazon.com/mac}, {amazon.com/mac}
+        if(!isValidLink) return alert('Please provide a valid Amazon link')
+
+        try {
+            setIsLoading(true);
+            // Scrape the product page
+
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsLoading(false);
+        }
     }
 
   return (
@@ -49,7 +61,9 @@ const Searchbar = () => {
         <button 
             type="submit" 
             className="searchbar-btn"
+            disabled={searchPrompt === ''}  //disable search button when prompt is empty
         >
+            {isLoading ? 'Searching...' : 'Search'}
         </button>
     </form>
   )
