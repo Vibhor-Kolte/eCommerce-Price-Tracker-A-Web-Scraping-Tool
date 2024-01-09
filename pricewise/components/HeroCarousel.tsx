@@ -14,7 +14,7 @@ const heroImages = [
 
 const HeroCarousel = () => {
   return (
-    <div>
+    <div className="hero-carousel">
         <Carousel
             // Props for Carousel
             showThumbs={false}
