@@ -44,7 +44,17 @@ export async function scrapeAmazonProduct(url: string) {
           $('.a-size-base.a-color-price')
         );
 
-        console.log(title, currentPrice, originalPrice);
+        const outOfStock = $('#availability span').text().trim().toLowerCase() === 'currently unavailable';
+
+        const images = 
+          $('#imgBlkFront').attr('data-a-dynamic-image') || 
+          $('#landingImage').attr('data-a-dynamic-image') ||
+          '{}'
+
+        const imageUrls = Object.keys(JSON.parse(images));
+
+
+        console.log(title, currentPrice, originalPrice, outOfStock, imageUrls);
     
         // Construct data object with scraped information
         
