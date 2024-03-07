@@ -4,6 +4,7 @@ import Product from "../models/product.model";
 import { connectToDB } from "../mongoose";
 
 import { scrapeAmazonProduct } from "../scraper";
+import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 
 export async function scrapeAndStoreProduct(productUrl: string) {
     if(!productUrl) return;
@@ -34,6 +35,12 @@ export async function scrapeAndStoreProduct(productUrl: string) {
         averagePrice: getAveragePrice(updatedPriceHistory),
       }
     }
+
+    const newProduct = await Product.findOneAndUpdate(
+      { url: scrapedProduct.url },
+      product,
+      { upsert: true, new: true }
+    );
 
     } catch (error: any) {
       throw new Error(`Failed to create/update product: ${error.message}`)
