@@ -1,9 +1,14 @@
 import React from 'react'
 import Image from "next/image"
+import { getAllProducts } from "@/lib/actions"
 import Searchbar from '@/components/Searchbar'
 import HeroCarousel from '@/components/HeroCarousel'
+import ProductCard from "@/components/ProductCard"
 
-const Home = () => {
+const Home = async () => {
+
+  const allProducts = await getAllProducts();
+  
   return (
     <>
     <section className="px-6 md:px-20 py-24 border-2 border-red-500"> {/* On Medium Devices, define padding-x & padding-y */}
@@ -43,6 +48,13 @@ const Home = () => {
             <div>{product}</div>
           ))}
         </div>
+
+        <div className="flex flex-wrap gap-x-8 gap-y-16">
+          {allProducts?.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
+
       </section>
     </>
   )
